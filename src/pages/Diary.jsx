@@ -102,7 +102,8 @@ function Diary() {
     }
 
     const today = new Date();
-    const dateString = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, "0")}.${String(today.getDate()).padStart(2, "0")}`;
+    const dateString =
+    `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     const newDiary = {
       id: Date.now(),
       date: dateString,
