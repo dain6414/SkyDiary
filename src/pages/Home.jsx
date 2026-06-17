@@ -51,22 +51,54 @@ function Home() {
   const todos = JSON.parse(localStorage.getItem("todos")) || [];
 
   // 오늘 일정 필터링
-  const todayEvents = events.filter((event) => {
-    // 반복 일정
-    if (event.rrule) {
-      const repeatStart = event.rrule.dtstart.split("T")[0];
+  const todayDate = formatDate(new Date());
 
-      return todayDate >= repeatStart;
-    }
+  const todayEvents = events.filter((event) => {
 
     // 일반 일정
-    const start = event.start.split("T")[0];
+    if (event.start) {
+      const start = event.start.split("T")[0];
 
-    const end = event.end
-      ? event.end.split("T")[0]
-      : start;
+      const end = event.end
+        ? event.end.split("T")[0]
+        : start;
 
-    return todayDate >= start && todayDate < end;
+      return todayDate >= start && todayDate < end;
+    }
+
+    // 반복 일정
+    if (event.rrule) {
+
+      const repeatStart = event.rrule.dtstart.split("T")[0];
+
+      const startDate = new Date(repeatStart);
+      const currentDate = new Date(todayDate);
+
+      // 시작일 이전이면 표시 안함
+      if (currentDate < startDate) {
+        return false;
+      }
+
+      // 매주
+      if (event.repeat === "매주") {
+        return currentDate.getDay() === startDate.getDay();
+      }
+
+      // 매월
+      if (event.repeat === "매월") {
+        return currentDate.getDate() === startDate.getDate();
+      }
+
+      // 매년
+      if (event.repeat === "매년") {
+        return (
+          currentDate.getMonth() === startDate.getMonth() &&
+          currentDate.getDate() === startDate.getDate()
+        );
+      }
+    }
+
+    return false;
   });
 
   const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
