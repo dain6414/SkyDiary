@@ -94,7 +94,7 @@ function Home() {
     <div className="home-container">
       {/* 인사말 */}
       <div className="welcome-section">
-        <h1>안녕하세요, 다인님 ☁️</h1>
+        <h1>안녕하세요 ☁️</h1>
 
         <p>{todayStr}</p>
       </div>
