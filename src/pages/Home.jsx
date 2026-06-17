@@ -188,15 +188,13 @@ function Home() {
           <div className="card-header">
             <h3>오늘 할 일</h3>
 
-            <span>
-              {completedCount}/{todayTodos.length}
-            </span>
+            <span>{todayTodos.length}개</span>
           </div>
 
           {todayTodos.length === 0 ? (
             <p>오늘 할일이 없습니다.</p>
           ) : (
-            todayTodos.slice(0, 4).map((todo) => (
+            todayTodos.map((todo) => (
               <label key={todo.id}>
                 <input
                   type="checkbox"
@@ -229,18 +227,6 @@ function Home() {
             ))
           )}
 
-          <div className="home-progress">
-            <div className="home-progress-bar">
-              <div
-                className="home-progress-fill"
-                style={{
-                  width: `${progress}%`,
-                }}
-              />
-            </div>
-
-            <span>완료율 {progress}%</span>
-          </div>
         </div>
 
         {/* 달력 */}
