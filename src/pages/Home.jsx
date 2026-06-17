@@ -103,7 +103,7 @@ function Home() {
 
   const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
 
-  const todayName = dayNames[new Date(todayStr).getDay()];
+  const todayName = dayNames[today.getDay()];
 
   const todayNum = new Date(todayStr).getDate();
 
@@ -117,6 +117,37 @@ function Home() {
 
     if (todo.repeat === "매월" && todo.monthType === "date") {
       return Number(todo.monthDate) === todayNum;
+    }
+
+    if (
+      todo.repeat === "매월" &&
+      todo.monthType === "weekday"
+    ) {
+
+      const date = new Date(todayStr);
+
+      const weekIndex = Math.floor(
+        (date.getDate() - 1) / 7
+      );
+
+      const weekNames = [
+        "첫째",
+        "둘째",
+        "셋째",
+        "넷째",
+        "다섯째"
+      ];
+
+      const currentWeek = weekNames[weekIndex];
+
+      const currentDay =
+        dayNames[date.getDay()];
+
+
+      return (
+        todo.monthWeek === currentWeek &&
+        todo.monthWeekDay === currentDay
+      );
     }
 
     return false;
