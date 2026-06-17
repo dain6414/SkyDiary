@@ -234,6 +234,21 @@ function Schedule() {
             events={filteredEvents}
             
             dateClick={(info) => {
+              setSelectedEventId(null);
+
+              setForm({
+                title: "",
+                start: info.dateStr,
+                startTime: "",
+                end: info.dateStr,
+                endTime: "",
+                isAllDay: true,
+                category: "학교",
+                repeat: "없음",
+              });
+            }}
+            
+            dateClick={(info) => {
               setForm((prev) => ({
                 ...prev,
                 start: info.dateStr,
