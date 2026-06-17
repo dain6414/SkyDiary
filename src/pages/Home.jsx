@@ -194,7 +194,7 @@ function Home() {
           {todayTodos.length === 0 ? (
             <p>오늘 할일이 없습니다.</p>
           ) : (
-            todayTodos.map((todo) => (
+            todayTodos.slice(0, 5).map((todo) => (
               <label key={todo.id}>
                 <input
                   type="checkbox"
