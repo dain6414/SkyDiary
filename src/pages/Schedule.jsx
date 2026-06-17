@@ -227,32 +227,50 @@ function Schedule() {
         {/* 달력 */}
         <div className="calendar-section" style={{ position: "relative" }}>
           <FullCalendar
+            dayCellDidMount={(info) => {
+              info.el.onclick = () => {
+
+                setSelectedEventId(null);
+
+                setForm({
+                  title:"",
+                  start: info.date.toISOString().split("T")[0],
+                  startTime:"",
+                  end:"",
+                  endTime:"",
+                  isAllDay:true,
+                  category:"학교",
+                  repeat:"없음",
+                });
+
+              };
+            }}
             plugins={[dayGridPlugin, interactionPlugin, rrulePlugin]}
             locale={koLocale}
             firstDay={0}
             initialView="dayGridMonth"
             events={filteredEvents}
             
-            dateClick={(info) => {
-              setSelectedEventId(null);
+              dateClick={(info) => {
+                setSelectedEventId(null);
 
-              setForm({
-                title: "",
-                start: info.dateStr,
-                startTime: "",
-                end: info.dateStr,
-                endTime: "",
-                isAllDay: true,
-                category: "학교",
-                repeat: "없음",
-              });
-            }}
-            
+                setForm({
+                  title: "",
+                  start: info.dateStr,
+                  startTime: "",
+                  end: "",
+                  endTime: "",
+                  isAllDay: true,
+                  category: "학교",
+                  repeat: "없음",
+                });
+              }}
+
             dateClick={(info) => {
               setForm((prev) => ({
                 ...prev,
                 start: info.dateStr,
-                end: info.dateStr,
+                end: "",
               }));
             }}
             height="auto"
