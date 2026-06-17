@@ -53,10 +53,14 @@ function Home() {
   // 오늘 일정 필터링
   const todayDate = formatDate(new Date());
 
-  const todayEvents = events.filter((event) => {
+    const todayEvents = events.filter((event) => {
     const start = event.start.split("T")[0];
 
-    return start === todayDate;
+    const end = event.end
+      ? event.end.split("T")[0]
+      : start;
+
+    return todayDate >= start && todayDate < end;
   });
 
   const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
