@@ -61,7 +61,7 @@ function Diary() {
   };
 
   const filteredList = diaryList.filter((item) => {
-    const selectedDateStr = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+    const selectedDateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
     const matchesCategory =
       searchCategory === "" ? true : item.newCategory === searchCategory;
     const matchesSearch = item.newTitle
