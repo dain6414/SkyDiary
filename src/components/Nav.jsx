@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import logo from "./../assets/logo.png";
-import todo from "./../assets/todo.png";
+import todo from "./../assets/todo.PNG";
 import daily from "./../assets/daily.png";
 import diary from "./../assets/diary.png";
 import home from "./../assets/home.png";
