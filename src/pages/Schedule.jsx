@@ -88,7 +88,6 @@ function Schedule() {
       };
     } else {
       const freqMap = {
-        매일: "daily",
         매주: "weekly",
         매월: "monthly",
         매년: "yearly",
@@ -167,7 +166,6 @@ function Schedule() {
       };
     } else {
       const freqMap = {
-        매일: "daily",
         매주: "weekly",
         매월: "monthly",
         매년: "yearly",
@@ -423,7 +421,6 @@ function Schedule() {
             }
           >
             <option>없음</option>
-            <option>매일</option>
             <option>매주</option>
             <option>매월</option>
             <option>매년</option>
