@@ -1,0 +1,410 @@
+.todo-container {
+  padding: 30px;
+}
+
+.todo-container h1 {
+  color: #233b67;
+  margin-bottom: 20px;
+}
+
+.category-filter {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.category-filter button {
+  border: none;
+  background: white;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.category-filter button:hover {
+  background: #eef5ff;
+}
+
+.category-filter button.active {
+  background: #6ba8ff;
+  color: white;
+}
+
+.date-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 16px;
+}
+
+.date-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.date-header h2 {
+  color: #233b67;
+  font-size: 20px;
+  margin: 0;
+  font-weight: 700;
+  min-width: 120px;
+  text-align: center;
+}
+
+.date-header button {
+  border: none;
+  background: white;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.nav-btn:hover {
+  background: #eef5ff;
+  color: #6ba8ff;
+}
+
+.today-btn {
+  background: #6ba8ff !important;
+  color: white !important;
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.today-btn:hover {
+  background: #5396f5 !important;
+}
+
+.view-toggle {
+  display: flex;
+  background: #edf2f7;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.view-toggle button {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  background: transparent;
+  color: #718096;
+  transition: 0.2s;
+}
+
+.view-toggle button.active {
+  background: white;
+  color: #233b67;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.todo-top {
+  display: flex;
+  gap: 20px;
+}
+
+.todo-content-area {
+  flex: 2.8;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.todo-list-section {
+  flex: 1.2;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+}
+
+.todo-card {
+  border: 1px solid #edf2f7;
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 14px;
+  transition: 0.2s;
+}
+
+.todo-card:hover {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.todo-main {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.todo-main input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.todo-info {
+  flex: 1;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.todo-info h3 {
+  color: #233b67;
+  font-size: 17px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.todo-info span {
+  color: #7b8794;
+  font-size: 14px;
+}
+
+.streak {
+  background: #fff5e6;
+  color: #ff8000;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.week-history {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #edf2f7;
+}
+
+.week-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 8px;
+  color: #7b8794;
+  font-size: 13px;
+}
+
+.week-checks {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.week-box {
+  height: 36px;
+  border-radius: 10px;
+  background: #edf2f7;
+}
+
+.week-box.done {
+  background: #6ba8ff;
+}
+
+.todo-form {
+  flex: 1;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: flex-start;
+}
+
+.todo-form h3 {
+  color: #233b67;
+  margin-bottom: 10px;
+}
+
+.todo-form label {
+  color: #233b67;
+  font-weight: 600;
+}
+
+.todo-form input,
+.todo-form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+}
+
+.todo-form input:focus,
+.todo-form select:focus {
+  border-color: #6ba8ff;
+}
+
+.todo-form button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  background: #6ba8ff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.todo-form button:hover {
+  opacity: 0.9;
+}
+
+.delete-btn {
+  background: #ff6b6b !important;
+}
+
+@media (max-width: 1000px) {
+  .todo-top {
+    flex-direction: column;
+  }
+}
+
+.month-calendar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: 600;
+  color: #718096;
+  padding-bottom: 5px;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.month-day {
+  background: white;
+  border: 1px solid #edf2f7;
+  border-radius: 14px;
+  padding: 8px;
+  min-height: 95px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.month-day:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-color: #cbd5e1;
+}
+
+.month-day.empty-day {
+  background: #f8fafc;
+  cursor: default;
+  border: none;
+}
+
+.month-day.empty-day:hover {
+  box-shadow: none;
+}
+
+.month-day.active-selected {
+  border: 2px solid #6ba8ff;
+  background: #f0f7ff;
+}
+
+.day-number {
+  font-weight: 700;
+  font-size: 13px;
+  color: #4a5568;
+  margin-bottom: 6px;
+}
+
+.mini-todos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.mini-todo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.mini-todo-dot.active-dot {
+  background-color: white;
+  border: 2px solid var(--dot-color);
+}
+
+.mini-todo-dot.completed-dot {
+  background-color: var(--dot-color);
+  border: none;
+}
+
+@media (max-width: 1400px) {
+
+  .todo-content-area > div:last-child {
+    flex-direction: column;
+  }
+
+  .month-calendar-container {
+    width: 100%;
+  }
+
+  .todo-list-section {
+    width: 100%;
+  }
+
+}
+
+.today-day {
+  background: #fff8e8;
+}
+
+.active-selected .day-number {
+  color: #6ba8ff;
+  font-weight: 700;
+}
+
+.empty-todo {
+  background: #f8fafc;
+  border: 2px dashed #dbe7ff;
+  border-radius: 18px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.empty-todo h3 {
+  color: #233b67;
+  margin-bottom: 8px;
+}
+
+.empty-todo p {
+  color: #7b8794;
+  font-size: 14px;
+}

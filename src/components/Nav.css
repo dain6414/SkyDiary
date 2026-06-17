@@ -1,0 +1,65 @@
+.nav {
+  background-color: #f4f9fd;
+  width: 350px;
+  min-width: 350px;
+  height: 100vh;
+
+  padding: 305x 0;
+
+  box-sizing: border-box;
+  border-right: 1px solid #e5eef7;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.skyLogo {
+  width: 320px;
+  height: auto;
+}
+
+.nav ul {
+  list-style: none;
+}
+
+.nav ul li {
+  margin-bottom: 2px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 18px 35px;
+
+  text-decoration: none;
+
+  color: #333;
+  font-size: 18px;
+  font-weight: 500;
+
+  border-radius: 12px;
+
+  transition: all 0.2s ease;
+}
+
+.navLink:hover {
+  background-color: #e3f0ff;
+  color: #1d4ed8;
+}
+
+.navIcon {
+  width: 40px;
+  height: 40px;
+
+  margin-right: 20px;
+
+  object-fit: contain;
+}

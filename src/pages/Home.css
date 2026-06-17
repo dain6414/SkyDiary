@@ -1,0 +1,328 @@
+.home-container {
+  padding: 25px;
+  background: #f7fbff;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.welcome-section {
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.welcome-section h1 {
+  font-size: 32px;
+  color: #233b67;
+  margin-bottom: 8px;
+}
+
+.welcome-section p {
+  color: #6b7b94;
+}
+
+.top-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  height: 280px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card h3 {
+  margin-bottom: 15px;
+}
+
+.mood-card {
+  text-align: center;
+}
+
+.mood-circle {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+
+  background: #dcecff;
+
+  margin: 20px auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 42px;
+}
+
+.schedule-item {
+  display: flex;
+  gap: 12px;
+
+  margin-bottom: 18px;
+}
+
+.todo-card label {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 16px;
+}
+
+.calendar-box {
+  height: 180px;
+
+  background: #f5f8ff;
+
+  border-radius: 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.one-line-diary {
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 24px;
+
+  margin-bottom: 25px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.one-line-diary h3 {
+  margin-bottom: 10px;
+}
+
+.goal-section {
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 24px;
+
+  margin-bottom: 25px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.goal-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+.goal-card {
+  padding: 18px;
+
+  border-radius: 20px;
+}
+
+.goal-card.school {
+  background: #eef5ff;
+}
+
+.goal-card.friend {
+  background: #eefcf1;
+}
+
+.goal-card.love {
+  background: #fff0f5;
+}
+
+.progress {
+  height: 8px;
+
+  background: #ddd;
+
+  border-radius: 999px;
+
+  margin: 10px 0;
+}
+
+.progress-fill {
+  height: 100%;
+
+  background: #4da3ff;
+
+  border-radius: 999px;
+}
+
+.category-section {
+  margin-bottom: 30px;
+}
+
+.category-section h3 {
+  margin-bottom: 20px;
+}
+
+.category-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+.category-card {
+  padding: 20px;
+
+  min-height: 110px;
+
+  border-radius: 20px;
+}
+
+.category-card.school {
+  background: #eef5ff;
+}
+
+.category-card.friend {
+  background: #eefcf1;
+}
+
+.category-card.love {
+  background: #fff0f5;
+}
+
+.category-card.personal {
+  background: #f5f0ff;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  margin-right: 8px;
+}
+
+.category-badge.학교 {
+  background: #6ba8ff;
+}
+
+.category-badge.친구 {
+  background: #63d68c;
+}
+
+.category-badge.연애 {
+  background: #ff8fb8;
+}
+
+.category-badge.개인 {
+  background: #b28dff;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-progress {
+  margin-top: 15px;
+}
+
+.home-progress-bar {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.home-progress-fill {
+  height: 100%;
+  background: #6ba8ff;
+}
+
+.home-calendar-date {
+  text-align: center;
+}
+
+.home-calendar-date h1 {
+  font-size: 60px;
+  color: #233b67;
+}
+
+.home-calendar-date p {
+  color: #6b7b94;
+}
+
+.mini-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7b94;
+}
+
+.calendar-day {
+  height: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+}
+
+.calendar-day.today {
+  background: #6ba8ff;
+  color: white;
+  font-weight: bold;
+}
+
+.home-schedule-card {
+  background: #f8fbff;
+  border-radius: 14px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.home-todo-card {
+  background: #f8fbff;
+  border-radius: 14px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.home-todo-card label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
