@@ -55,46 +55,33 @@ function Home() {
 
   const todayEvents = events.filter((event) => {
 
-    // 일반 일정
-    if (event.start) {
-      const start = event.start.split("T")[0];
-
-      const end = event.end
-        ? event.end.split("T")[0]
-        : start;
-
-      return todayDate >= start && todayDate < end;
-    }
-
     // 반복 일정
-    if (event.rrule) {
+    if(event.rrule){
 
-      const repeatStart = event.rrule.dtstart.split("T")[0];
-
-      const startDate = new Date(repeatStart);
-      const currentDate = new Date(todayDate);
-
-      if(event.rrule.until){
-
-        const untilDate =
-        new Date(event.rrule.until.split("T")[0]);
+      const repeatStart =
+        event.rrule.dtstart.split("T")[0];
 
 
-        if(currentDate > untilDate){
-          return false;
-        }
+      const startDate =
+        new Date(repeatStart);
 
-      }
+      const currentDate =
+        new Date(todayDate);
 
-      // 시작일 이전이면 표시 안함
-      if (currentDate < startDate) {
+
+      if(currentDate < startDate){
         return false;
       }
 
+
+      // 종료일 체크
       if(event.rrule.until){
 
         const untilDate =
-        new Date(event.rrule.until.split("T")[0]);
+          new Date(
+            event.rrule.until.split("T")[0]
+          );
+
 
         if(currentDate > untilDate){
           return false;
@@ -102,26 +89,57 @@ function Home() {
 
       }
 
-      // 매주
-      if (event.repeat === "매주") {
-        return currentDate.getDay() === startDate.getDay();
+
+      if(event.repeat==="매주"){
+        return currentDate.getDay()
+        === startDate.getDay();
       }
 
-      // 매월
-      if (event.repeat === "매월") {
-        return currentDate.getDate() === startDate.getDate();
+
+      if(event.repeat==="매월"){
+        return currentDate.getDate()
+        === startDate.getDate();
       }
 
-      // 매년
-      if (event.repeat === "매년") {
+
+      if(event.repeat==="매년"){
         return (
-          currentDate.getMonth() === startDate.getMonth() &&
-          currentDate.getDate() === startDate.getDate()
+          currentDate.getMonth()
+          === startDate.getMonth()
+          &&
+          currentDate.getDate()
+          === startDate.getDate()
         );
       }
+
     }
 
+
+
+    // 일반 일정
+    if(event.start){
+
+      const start =
+        String(event.start).split("T")[0];
+
+
+      const end =
+        event.end
+        ? String(event.end).split("T")[0]
+        : start;
+
+
+
+      return (
+        todayDate >= start &&
+        todayDate <= end
+      );
+
+    }
+
+
     return false;
+
   });
 
   const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
