@@ -56,7 +56,7 @@ function Schedule() {
     if (!form.title || !form.start) return;
 
     let finalStart = form.start;
-    let finalEnd = form.end || form.start;
+    let finalEnd = form.end;
 
     if (!form.isAllDay && form.startTime) {
       finalStart = `${form.start}T${form.startTime}`;
@@ -68,9 +68,13 @@ function Schedule() {
         finalEnd = `${form.start}T${form.startTime}`;
       }
     } else if (form.isAllDay) {
-      finalEnd = new Date(new Date(finalEnd).getTime() + 86400000)
-        .toISOString()
-        .split("T")[0];
+
+      if(!form.end){
+        finalEnd = form.start;
+      }else{
+        finalEnd = form.end;
+      }
+
     }
 
     let newEvent;
@@ -100,6 +104,10 @@ function Schedule() {
         rrule: {
           freq: freqMap[form.repeat],
           dtstart: finalStart,
+
+          ...(form.end && {
+            until:`${form.end}T23:59:59`
+          })
         },
 
         duration: form.isAllDay ? { days: 1 } : undefined,
@@ -133,27 +141,36 @@ function Schedule() {
 
   // 수정
   const updateEvent = () => {
+    if (!form.title || !form.start) return;
+
+
     let finalStart = form.start;
-    let finalEnd = form.end || form.start;
+    let finalEnd = form.end;
+
 
     if (!form.isAllDay && form.startTime) {
       finalStart = `${form.start}T${form.startTime}`;
+
       if (form.end && form.endTime) {
         finalEnd = `${form.end}T${form.endTime}`;
-      } else if (form.end) {
-        finalEnd = `${form.end}T23:59:59`;
-      } else {
-        finalEnd = `${form.start}T${form.startTime}`;
       }
-    } else if (form.isAllDay) {
-      finalEnd = new Date(new Date(finalEnd).getTime() + 86400000)
-        .toISOString()
-        .split("T")[0];
+    } 
+    else if(form.isAllDay){
+
+      if(!form.end){
+        finalEnd=form.start;
+      }else{
+        finalEnd=form.end;
+      }
+
     }
+
 
     let updatedEvent;
 
+
     if (form.repeat === "없음") {
+
       updatedEvent = {
         id: selectedEventId,
         title: form.title,
@@ -162,46 +179,63 @@ function Schedule() {
         allDay: form.isAllDay,
         category: form.category,
         repeat: form.repeat,
-        backgroundColor: getColor(form.category),
+        backgroundColor:getColor(form.category)
       };
+
     } else {
-      const freqMap = {
-        매주: "weekly",
-        매월: "monthly",
-        매년: "yearly",
+
+      const freqMap={
+        매주:"weekly",
+        매월:"monthly",
+        매년:"yearly"
       };
 
-      updatedEvent = {
-        id: selectedEventId,
-        title: form.title,
 
-        rrule: {
-          freq: freqMap[form.repeat],
-          dtstart: finalStart,
+      updatedEvent={
+        id:selectedEventId,
+        title:form.title,
+
+        rrule:{
+          freq:freqMap[form.repeat],
+          dtstart:finalStart,
+
+          ...(form.end && {
+            until:`${form.end}T23:59:59`
+          })
         },
 
-        duration: form.isAllDay ? { days: 1 } : undefined,
+        duration:{
+          days:1
+        },
 
-        allDay: form.isAllDay,
-        category: form.category,
-        repeat: form.repeat,
-        backgroundColor: getColor(form.category),
+        allDay:true,
+        category:form.category,
+        repeat:form.repeat,
+        backgroundColor:getColor(form.category)
       };
     }
 
-    setEvents(events.map((e) => (e.id === selectedEventId ? updatedEvent : e)));
+
+    setEvents(
+      events.map((e)=>
+        e.id===selectedEventId
+        ? updatedEvent
+        : e
+      )
+    );
+
 
     setSelectedEventId(null);
 
     setForm({
-      title: "",
-      start: "",
-      startTime: "",
-      end: "",
-      endTime: "",
-      isAllDay: true,
-      category: "학교",
-      repeat: "없음",
+      title:"",
+      start:"",
+      startTime:"",
+      end:"",
+      endTime:"",
+      isAllDay:true,
+      category:"학교",
+      repeat:"없음"
     });
   };
 
@@ -266,13 +300,6 @@ function Schedule() {
                 });
               }}
 
-            dateClick={(info) => {
-              setForm((prev) => ({
-                ...prev,
-                start: info.dateStr,
-                end: "",
-              }));
-            }}
             height="auto"
             dayMaxEvents={true}
             contentHeight={650}
@@ -298,12 +325,19 @@ function Schedule() {
 
               setSelectedEventId(e.id);
 
-              const hasTimeStart = String(e.start).includes("T");
+              const hasTimeStart = e.start && String(e.start).includes("T");
               const hasTimeEnd = e.end && String(e.end).includes("T");
 
-              const startDay = hasTimeStart
-                ? String(e.start).split("T")[0]
-                : e.start;
+              let startDay;
+              if(e.rrule){
+
+                startDay = e.rrule.dtstart.split("T")[0];
+
+              }else{
+
+                startDay = String(e.start).split("T")[0];
+
+              }
               const startTime = hasTimeStart
                 ? String(e.start).split("T")[1].substring(0, 5)
                 : "";
@@ -316,12 +350,15 @@ function Schedule() {
                   endDay = String(e.end).split("T")[0];
                   endTime = String(e.end).split("T")[1].substring(0, 5);
                 } else {
-                  endDay =
-                    e.allDay || e.allDay === undefined
-                      ? new Date(new Date(e.end).getTime() - 86400000)
-                          .toISOString()
-                          .split("T")[0]
-                      : e.end;
+
+                  const end = String(e.end);
+
+                  if(end === startDay){
+                    endDay="";
+                  }else{
+                    endDay=end;
+                  }
+
                 }
               } else {
                 endDay = startDay;
@@ -331,7 +368,10 @@ function Schedule() {
                 title: e.title,
                 start: startDay,
                 startTime: startTime,
-                end: endDay,
+                end:
+                  e.rrule?.until
+                  ? e.rrule.until.split("T")[0]
+                  : endDay,
                 endTime: endTime,
                 isAllDay: e.allDay !== undefined ? e.allDay : !hasTimeStart,
                 category: e.category,
