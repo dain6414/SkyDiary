@@ -51,9 +51,15 @@ function Home() {
   const todos = JSON.parse(localStorage.getItem("todos")) || [];
 
   // 오늘 일정 필터링
-  const todayDate = formatDate(new Date());
+  const todayEvents = events.filter((event) => {
+    // 반복 일정
+    if (event.rrule) {
+      const repeatStart = event.rrule.dtstart.split("T")[0];
 
-    const todayEvents = events.filter((event) => {
+      return todayDate >= repeatStart;
+    }
+
+    // 일반 일정
     const start = event.start.split("T")[0];
 
     const end = event.end
