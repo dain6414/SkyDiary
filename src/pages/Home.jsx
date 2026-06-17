@@ -74,9 +74,32 @@ function Home() {
       const startDate = new Date(repeatStart);
       const currentDate = new Date(todayDate);
 
+      if(event.rrule.until){
+
+        const untilDate =
+        new Date(event.rrule.until.split("T")[0]);
+
+
+        if(currentDate > untilDate){
+          return false;
+        }
+
+      }
+
       // 시작일 이전이면 표시 안함
       if (currentDate < startDate) {
         return false;
+      }
+
+      if(event.rrule.until){
+
+        const untilDate =
+        new Date(event.rrule.until.split("T")[0]);
+
+        if(currentDate > untilDate){
+          return false;
+        }
+
       }
 
       // 매주
